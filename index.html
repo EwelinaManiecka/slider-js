@@ -5,10 +5,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Img Slider JavaScript</title>
     <link rel="stylesheet" href="./style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=M+PLUS+Rounded+1c:wght@500&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@48,400,0,0" rel="stylesheet">
 </head>
 <body>
 <div class="container">
     <div class="slider-wrapper">
+        <button id="prev-slide" class="slide-button material-symbols-rounded">chevron_left</button>
         <div class="image-list">
             <img src="./img/austria-2666061_1920.jpg" alt="Landscape mountain, Austria" class="image-item">
             <img src="./img/city-6558404_1920.jpg" alt="Avila city, Spain" class="image-item">
@@ -19,6 +24,7 @@
             <img src="./img/seville-656699_1920.jpg" alt="Tower in church in Sevilla, Spain" class="image-item">
             <img src="./img/waterfall-2192613_1920.jpg" alt="Landscape mountain and river, Austria" class="image-item">
         </div>
+        <button id="next-slide" class="slide-button material-symbols-rounded">chevron_right</button>
     </div>
     <div class="slider-scrollbar">
         <div class="scrollbar-track">
@@ -26,5 +32,6 @@
         </div>
     </div>
 </div>
+<script src="./script.js"></script>
 </body>
 </html>
