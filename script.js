@@ -12,29 +12,33 @@ const initSlider = () => {
         const handleMouseMovie = (e) => {
             const deltaX = e.clientX - startX;
             const newThumbPosition = thumbPosition + deltaX;
-            scrollbarThumb.style.left = `${newThumbPosition}px`
+            const maxThumbPosition = sliderScrollbar.getBoundingClientRect().width - scrollbarThumb.offsetWidth;
+
+            const boundedPosition = Math.max(0, Math.min(maxThumbPosition, newThumbPosition));
+
+            scrollbarThumb.style.left = `${boundedPosition}px`;
         }
 
         const handleMouseUp = (e) => {
-            document.removeEventListener('mousemove', handleMouseMovie)
-            document.removeEventListener('mouseup', handleMouseUp)    
+            document.removeEventListener('mousemove', handleMouseMovie);
+            document.removeEventListener('mouseup', handleMouseUp);    
         }
 
-        document.addEventListener('mousemove', handleMouseMovie)
-        document.addEventListener('mouseup', handleMouseUp)
+        document.addEventListener('mousemove', handleMouseMovie);
+        document.addEventListener('mouseup', handleMouseUp);
     });
 
     slideButtons.forEach(button => {
         button.addEventListener("click", () => {
             const direction = button.id === 'prev-slide' ? -1 : 1;
             const scrollAmount = imageList.clientWidth * direction;
-            imageList.scrollBy({left: scrollAmount, behavior: 'smooth'})
+            imageList.scrollBy({left: scrollAmount, behavior: 'smooth'});
         });
     });
 
     const handleSlideButtons = () => {
-        slideButtons[0].style.display = imageList.scrollLeft <= 0 ? 'none' : 'block'
-        slideButtons[1].style.display = imageList.scrollLeft >= maxScrollLeft ? 'none' : 'block'
+        slideButtons[0].style.display = imageList.scrollLeft <= 0 ? 'none' : 'block';
+        slideButtons[1].style.display = imageList.scrollLeft >= maxScrollLeft ? 'none' : 'block';
     }
 
     const updateScrollThumbPosition = () => {
@@ -49,4 +53,4 @@ const initSlider = () => {
     });
 }
 
-window.addEventListener('load', initSlider)
+window.addEventListener('load', initSlider);
