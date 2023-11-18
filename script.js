@@ -4,6 +4,7 @@ const initSlider = () => {
     const sliderScrollbar = document.querySelector(".container .slider-scrollbar");
     const scrollbarThumb = sliderScrollbar.querySelector(".scrollbar-thumb");
     const maxScrollLeft = imageList.scrollWidth - imageList.clientWidth;
+    const year = document.getElementById("year").innerHTML = new Date().getFullYear();
 
     scrollbarThumb.addEventListener("mousedown", (e) => {
         const startX = e.clientX;
@@ -15,8 +16,10 @@ const initSlider = () => {
             const maxThumbPosition = sliderScrollbar.getBoundingClientRect().width - scrollbarThumb.offsetWidth;
 
             const boundedPosition = Math.max(0, Math.min(maxThumbPosition, newThumbPosition));
+            const scrollPosition = (boundedPosition / maxThumbPosition) * maxScrollLeft;
 
             scrollbarThumb.style.left = `${boundedPosition}px`;
+            imageList.scrollLeft = scrollPosition;
         }
 
         const handleMouseUp = (e) => {
