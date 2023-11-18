@@ -8,6 +8,20 @@ const initSlider = () => {
     scrollbarThumb.addEventListener("mousedown", (e) => {
         const startX = e.clientX;
         const thumbPosition = scrollbarThumb.offsetLeft;
+
+        const handleMouseMovie = (e) => {
+            const deltaX = e.clientX - startX;
+            const newThumbPosition = thumbPosition + deltaX;
+            scrollbarThumb.style.left = `${newThumbPosition}px`
+        }
+
+        const handleMouseUp = (e) => {
+            document.removeEventListener('mousemove', handleMouseMovie)
+            document.removeEventListener('mouseup', handleMouseUp)    
+        }
+
+        document.addEventListener('mousemove', handleMouseMovie)
+        document.addEventListener('mouseup', handleMouseUp)
     });
 
     slideButtons.forEach(button => {
